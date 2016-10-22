@@ -1,4 +1,4 @@
-var profile = require("./profile.js");
+var Profile = require("./profile.js");
 
 
 //routes
@@ -33,16 +33,16 @@ function user(request, response){
         javascriptPoints: profileJSON.points.JavaScript
       }
       //simple response
-      response.write(vales.username + " has" + values.badges + " badges\n");
+      response.write(values.username + " has" + values.badges + " badges\n");
       response.end('Footer\n');
     });
     
     //on error
     studentProfile.on("error", function(error){
       //show error
-      response.end('Footer\n');
+      response.write(error.message + "\n");
+      response.end("Footer\n")
     });
-    response.end("Footer\n");
   }
 }
 
