@@ -1,8 +1,11 @@
+//require router file
+var router = require("router.js");
+
 //create web server 
 var http = require('http');
 http.createServer(function(request, response){
-  request.writeHead(200, {'Content-Type': 'text/plain'});
-  response.end('Hello World');
-}).listen(1337, '127.0.0.1');
+  router.home(request, response);
+  router.user(request, reponse);
+  
+}).listen(3000);
 console.log('Server running at http://127.0.0.1:1337/');
-
