@@ -1,3 +1,6 @@
+var profile = require("./profile.js");
+
+
 //routes
 
 function home(request, response){
@@ -15,7 +18,30 @@ function user(request, response){
   if(username.length > 0){
     response.writeHead(200, {'Content-Type': 'text/plain'});
     response.write("Header\n");
-    response.write(username + "\n");
+    
+    //get json from site
+    var studentProfile = new Profile(username);
+    //on "end"
+    studentProfile.on("end", function(profileJSON){
+      //show profile
+      
+      //store the values we need from the returned json object
+      var values = {
+        avatarURL: profileJSON.gravatar_url,
+        username: profileJSON.profile_name,
+        badges: profileJSON.badges.length,
+        javascriptPoints: profileJSON.points.JavaScript
+      }
+      //simple response
+      response.write(vales.username + " has" + values.badges + " badges\n");
+      response.end('Footer\n');
+    });
+    
+    //on error
+    studentProfile.on("error", function(error){
+      //show error
+      response.end('Footer\n');
+    });
     response.end("Footer\n");
   }
 }
