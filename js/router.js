@@ -1,7 +1,6 @@
 //routes
 
-//handle http route get and post
-function homeRoute(request, response){
+function home(request, response){
   
   if(request.url === "/"){
     response.writeHead(200, {'Content-Type': 'text/plain'});
@@ -11,8 +10,7 @@ function homeRoute(request, response){
     }
 }
 
-//handle the HTTP route GET
-function userRoute(request, response){
+function user(request, response){
   var username = request.url.replace("/", "");
   if(username.length > 0){
     response.writeHead(200, {'Content-Type': 'text/plain'});
@@ -21,3 +19,7 @@ function userRoute(request, response){
     response.end("Footer\n");
   }
 }
+
+//export the routes
+module.exports.home = home;
+module.exports.user = user;
