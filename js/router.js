@@ -1,4 +1,5 @@
 var Profile = require("./profile.js");
+var reder = require('./reder.js');
 
 
 //routes
@@ -17,7 +18,7 @@ function user(request, response){
   var username = request.url.replace("/", "");
   if(username.length > 0){
     response.writeHead(200, {'Content-Type': 'text/plain'});
-    response.write("Header\n");
+    response.view("header, {}, response");
     
     //get json from site
     var studentProfile = new Profile(username);
