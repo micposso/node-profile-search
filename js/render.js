@@ -25,3 +25,5 @@ function view(templateName, values, response ){
 }
 
 module.exports.view = view;
+
+//start the file writing
