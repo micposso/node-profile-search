@@ -1,5 +1,5 @@
 var Profile = require("./profile.js");
-var reder = require('./reder.js');
+var render = require('./render.js');
 
 
 //routes
