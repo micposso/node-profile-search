@@ -8,9 +8,10 @@ function home(request, response){
   
   if(request.url === "/"){
     response.writeHead(200, {'Content-Type': 'text/plain'});
-    response.write("Header\n");
-    response.write("Search\n");
-    response.end("Footer\n");
+    render.view("Header", {}, response);
+    render.view("Search", {}, response);
+    render.view("Footer", {}, response);
+    response.end();
     }
 }
 
@@ -18,7 +19,7 @@ function user(request, response){
   var username = request.url.replace("/", "");
   if(username.length > 0){
     response.writeHead(200, {'Content-Type': 'text/plain'});
-    response.view("header, {}, response");
+    render.view("header", {}, response);
     
     //get json from site
     var studentProfile = new Profile(username);
@@ -34,15 +35,18 @@ function user(request, response){
         javascriptPoints: profileJSON.points.JavaScript
       }
       //simple response
-      response.write(values.username + " has" + values.badges + " badges\n");
-      response.end('Footer\n');
+      render.view("profile", values, response);
+      render.view('Footer', {}, response);
+      response.end();
     });
     
     //on error
     studentProfile.on("error", function(error){
       //show error
-      response.write(error.message + "\n");
-      response.end("Footer\n")
+      render.view("error", {errorMessage: error.message}, response);
+      render.view("Search", {}, response);
+      render.view("Footer", {}, response);
+      response.end();
     });
   }
 }
