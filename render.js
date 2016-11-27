@@ -12,7 +12,7 @@ function mergeValues(values, content){
 
 function view(templateName, values, response) {
   //read from template
-  var fileContents = fs.readFileSync('../views/' + templateName + '.html',{encoding: "utf8"});
+  var fileContents = fs.readFileSync('./views/' + templateName + '.html',{encoding: "utf8"});
     
     //insert values into the content
     fileContents = mergeValues(values, fileContents);
@@ -21,5 +21,3 @@ function view(templateName, values, response) {
 }
 
 module.exports.view = view;
-
-//start the file writing

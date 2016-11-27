@@ -1,13 +1,14 @@
 var Profile = require("./profile.js");
 var render = require('./render.js');
-
+//create general header
+var commonHeaders = {'Content-Type': 'text/html'};
 
 //routes
 
 function home(request, response){
   
   if(request.url === "/"){
-    response.writeHead(200, {'Content-Type': 'text/plain'});
+    response.writeHead(200, commonHeaders);
     render.view("Header", {}, response);
     render.view("Search", {}, response);
     render.view("Footer", {}, response);
@@ -18,7 +19,7 @@ function home(request, response){
 function user(request, response){
   var username = request.url.replace("/", "");
   if(username.length > 0){
-    response.writeHead(200, {'Content-Type': 'text/plain'});
+    response.writeHead(200, commonHeaders);
     render.view("header", {}, response);
     
     //get json from site
