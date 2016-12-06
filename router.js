@@ -45,8 +45,8 @@ function user(request, response){
     studentProfile.on("error", function(error){
       //show error
       render.view("error", {errorMessage: error.message}, response);
-      render.view("Search", {}, response);
-      render.view("Footer", {}, response);
+      render.view("search", {}, response);
+      render.view("footer", {}, response);
       response.end();
     });
   }
