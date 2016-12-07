@@ -7,5 +7,5 @@ http.createServer(function(request, response){
   router.home(request, response);
   router.user(request, response);
   
-}).listen(3000);
+}).listen(8080);
 console.log('Server running at http://127.0.0.1:1337/');
