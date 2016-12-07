@@ -1,19 +1,13 @@
-  <div class="valign-wrapper">
-    <div class="container center-align">
-      <div class="row">
-        <div class="card-image">
-          <img src="{{avatarUrl}}" width="200px">
-        </div>
-        <div class="row">
-          <h9>@waldo</h6>
-        </div>
-        <div class="content card">
-          <ul class="collection">
-            <li class="collection-item">Badges <span class="new badge">1</span></li>
-            <li class="collection-item">JavaScript Points <span class="new badge">1</span></li>
-            <li class="collection-item">Search Again</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+<div id="profile">
+
+    <img src="{{avatarUrl}}" alt="Avatar" id="avatar">
+
+    <p><span>@{{username}}</span></p>
+
+    <ul>
+        <li><span>{{badges}}</span> Badges earned</li>
+        <li><span>{{javascriptPoints}}</span> JavaScript points</li>
+        <li><a href="/">search again</a></li>
+    </ul>
+
+</div>
