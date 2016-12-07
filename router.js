@@ -1,5 +1,5 @@
 var Profile = require("./profile.js");
-var render = require('./render.js');
+var render = require('./renderer.js');
 //create general header
 var commonHeaders = {'Content-Type': 'text/html'};
 
