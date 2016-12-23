@@ -1,7 +1,6 @@
 var Profile = require("./profile.js");
 var renderer = require("./renderer.js");
 var querystring = require("querystring");
-
 var commonHeaders = {'Content-Type': 'text/html'};
 
 //Handle HTTP route GET / and POST / i.e. Home
@@ -20,9 +19,10 @@ function home(request, response) {
       
       //get the post data from body
       request.on("data", function(postBody) {
+        console.log(postBody.toString());
         //extract the username
         var query = querystring.parse(postBody.toString());
-        response.write(query.username);
+        response.writeHead(303, {"Location" : "/" + query.username});
         response.end();
         //redirect to /:username
       });
@@ -30,6 +30,17 @@ function home(request, response) {
     }
   }
   
+}
+
+//return the year into the footer html view
+function year(request, response) {
+    response.writeHead(200, commonHeaders);  
+    var date = new Date();
+    var year = date.getFullYear();
+    console.log(year);
+    //Simple response
+    renderer.view("footer", year, response);
+    response.end();
 }
 
 //Handle HTTP route GET /:username i.e. /chalkers
@@ -53,6 +64,8 @@ function user(request, response) {
         badges: profileJSON.badges.length,
         javascriptPoints: profileJSON.points.JavaScript
       }
+      
+
       //Simple response
       renderer.view("profile", values, response);
       renderer.view("footer", {}, response);
