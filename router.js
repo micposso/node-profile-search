@@ -32,6 +32,17 @@ function home(request, response) {
   
 }
 
+//return the year into the footer html view
+function year(request, response) {
+    response.writeHead(200, commonHeaders);  
+    var date = new Date();
+    var year = date.getFullYear();
+    console.log(year);
+    //Simple response
+    renderer.view("footer", year, response);
+    response.end();
+}
+
 //Handle HTTP route GET /:username i.e. /chalkers
 function user(request, response) {
   //if url == "/...."
@@ -54,11 +65,10 @@ function user(request, response) {
         javascriptPoints: profileJSON.points.JavaScript
       }
       
-      var year = dateObj.getFullYear();
 
       //Simple response
       renderer.view("profile", values, response);
-      renderer.view("footer", year, response);
+      renderer.view("footer", {}, response);
       response.end();
     });
         
