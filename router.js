@@ -53,9 +53,12 @@ function user(request, response) {
         badges: profileJSON.badges.length,
         javascriptPoints: profileJSON.points.JavaScript
       }
+      
+      var year = dateObj.getFullYear();
+
       //Simple response
       renderer.view("profile", values, response);
-      renderer.view("footer", {}, response);
+      renderer.view("footer", year, response);
       response.end();
     });
         
