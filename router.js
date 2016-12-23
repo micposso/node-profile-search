@@ -1,7 +1,6 @@
 var Profile = require("./profile.js");
 var renderer = require("./renderer.js");
 var querystring = require("querystring");
-
 var commonHeaders = {'Content-Type': 'text/html'};
 
 //Handle HTTP route GET / and POST / i.e. Home
@@ -20,9 +19,10 @@ function home(request, response) {
       
       //get the post data from body
       request.on("data", function(postBody) {
+        console.log(postBody.toString());
         //extract the username
         var query = querystring.parse(postBody.toString());
-        response.write(query.username);
+        response.writeHead(303, {"Location" : "/" + query.username});
         response.end();
         //redirect to /:username
       });
